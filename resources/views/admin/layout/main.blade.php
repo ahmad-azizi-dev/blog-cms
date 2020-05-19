@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -18,18 +17,51 @@
 
 <body class="navbar-fixed sidebar-nav fixed-nav">
 
-<div class="row">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Logo</a>
 
-@yield('content')
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                users management
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{route('users.index')}}">users list</a>
+                <a class="dropdown-item" href="{{route('users.create')}}">create user</a>
+                <a class="dropdown-item" href="#">edit user</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<br>
+
+<div class="container">
+
+
+    <div class="row">
+
+        @yield('content')
+
+    </div>
 
 </div>
 
-<footer class="footer">
+<footer class="footer container">
         <span class="text-left">
             <a href=""> Admin UI</a> &copy;
         </span>
     <span class="pull-right">
-            Powered by <a href="">CoreUI</a>
+
         </span>
 </footer>
 
