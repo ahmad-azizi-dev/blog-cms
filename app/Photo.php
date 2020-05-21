@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    protected $path = '/blog-cms/public/images/';
+    protected $path = '/images/';
 
     public function user()
     {

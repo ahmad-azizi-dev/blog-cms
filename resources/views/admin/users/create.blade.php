@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>users list</h2>
+        <h2>create user</h2>
         <div class="col-md-6 ">
 
             {!! Form::open(['method' => 'post','action' => 'Admin\AdminUserController@store' , 'files'=>true]) !!}

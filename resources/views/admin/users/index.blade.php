@@ -2,6 +2,26 @@
 
 @section('content')
 
+
+    @if(Session::has('create_user'))
+        <div class="alert alert-success">
+            <p>{{Session('create_user')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('update_user'))
+        <div class="alert alert-success">
+            <p>{{Session('update_user')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('delete_user'))
+        <div class="alert alert-danger">
+            <p>{{Session('delete_user')}}</p>
+        </div>
+    @endif
+
+
     <div class="container">
         <h2>users list</h2>
 
@@ -21,12 +41,12 @@
             @foreach($users as $user)
                 <tr>
                     @if($user->photo)
-                        <td><img src="{{$user->photo->path}}" alt="sss" width="80"></td>
+                        <td><img src="{{url('/').$user->photo->path}}" alt="http://placehold.it/200" width="80"></td>
 
                     @else
-                        <td> sss</td>
+                        <td><img src="http://placehold.it/200" alt="http://placehold.it/200" width="80"></td>
                     @endif
-                    <td>{{$user->name}}</td>
+                    <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at}}</td>
                     <td>
