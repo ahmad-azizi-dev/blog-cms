@@ -38,7 +38,15 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{route('users.index')}}">users list</a>
                 <a class="dropdown-item" href="{{route('users.create')}}">create user</a>
-                <a class="dropdown-item" href="#">edit user</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                posts management
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{route('posts.index')}}">posts list</a>
+                <a class="dropdown-item" href="{{route('posts.create')}}">create new post</a>
             </div>
         </li>
     </ul>

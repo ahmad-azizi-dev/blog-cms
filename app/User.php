@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'status' , 'photo_id'
     ];
 
     /**
@@ -39,7 +39,9 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\Role')->withTimestamps();
+        //If you want your pivot table to have automatically maintained created_at
+        // and updated_at timestamps, use the withTimestamps() method
     }
 
     public function photos()
@@ -61,5 +63,10 @@ class User extends Authenticatable
             }
         }
         return false;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
     }
 }

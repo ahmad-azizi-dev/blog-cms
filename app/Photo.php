@@ -17,4 +17,8 @@ class Photo extends Model
     {
         return $this->path . $photo;
     }
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 }
