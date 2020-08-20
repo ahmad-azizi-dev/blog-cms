@@ -8,6 +8,18 @@
         </div>
     @endif
 
+    @if(Session::has('update_post'))
+        <div class="alert alert-success">
+            <p>{{Session('update_post')}}</p>
+        </div>
+    @endif
+
+    @if(Session::has('delete_post'))
+        <div class="alert alert-danger">
+            <p>{{Session('delete_post')}}</p>
+        </div>
+    @endif
+
     <div class="container">
         <h2>posts list</h2>
 

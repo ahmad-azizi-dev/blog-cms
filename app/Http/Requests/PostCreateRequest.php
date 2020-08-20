@@ -25,12 +25,14 @@ class PostCreateRequest extends FormRequest
     {
         return [
 
-            'title'       => 'required|min:10',
-            'slug'        => 'unique:posts',
-            'description' => 'required',
-            'photo'       => 'required',
-            'cats'        => 'required',
-            'status'      => 'required',
+            'title'            => 'required|min:10',
+            'slug'             => 'unique:posts',
+            'description'      => 'required',
+            'meta_description' => 'required',
+            'meta_keywords'    => 'required',
+            'photo'            => 'required',
+            'cats'             => 'required',
+            'status'           => 'required',
         ];
     }
 
@@ -38,12 +40,14 @@ class PostCreateRequest extends FormRequest
     {
         return [
 
-            'title.required'       => 'please enter a title',
-            'description.required' => 'please enter description',
-            'cats.required'        => 'please choose one category',
-            'status.required'      => 'please choose the status of the post',
-            'photo.required'       => 'please enter one photo',
-            'slug.unique'          => 'This slug has been chose please enter another one',
+            'title.required'            => 'please enter a title',
+            'description.required'      => 'please enter description',
+            'meta_description.required' => 'please enter meta_description',
+            'meta_keywords.required'    => 'please enter meta_keywords',
+            'cats.required'             => 'please choose one category',
+            'status.required'           => 'please choose the status of the post',
+            'photo.required'            => 'please enter one photo',
+            'slug.unique'               => 'This slug has been chosen please enter another one',
         ];
     }
 }

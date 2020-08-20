@@ -22,7 +22,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles','photo')->get();
+        $users = User::with('roles', 'photo')->get();
 
         return view('admin.users.index', compact(['users']));
     }
@@ -117,13 +117,15 @@ class AdminUserController extends Controller
 
             if ($user->photo_id) {
                 $photo = Photo::findOrFail($user->photo_id);
-                unlink(public_path() . $user->photo->path);
-                $photo->delete();
+                if (file_exists(public_path() . $user->photo->path)) {
+                    unlink(public_path() . $user->photo->path);
+                }
+            } else {
+                $photo = new photo();
             }
 
             $name = Str::random(10) . time() . $file->getClientOriginalName();
             $file->move('images', $name);
-            $photo = new photo();
             $photo->name = $file->getClientOriginalName();
             $photo->path = $name;
             $photo->user_id = Auth::id();
@@ -159,7 +161,11 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         if ($user->photo_id) {
             $photo = Photo::findOrFail($user->photo_id);
-            unlink(public_path() . $user->photo->path);
+
+            // try to delete the photo if was exist
+            if (file_exists(public_path() . $user->photo->path)) {
+                unlink(public_path() . $user->photo->path);
+            }
             $photo->delete();
         }
         $user->delete();
