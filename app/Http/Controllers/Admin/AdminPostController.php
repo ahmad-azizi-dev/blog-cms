@@ -59,11 +59,7 @@ class AdminPostController extends Controller
             $post->photo_id = $photo->id;
         }
         $post->title = $request->input('title');
-        if ($request->input('slug')) {
-            $post->slug = make_slug($request->input('slug'));
-        } else {
-            $post->slug = make_slug($request->input('title'));
-        }
+        $post->slug = $request->input('slug');     // the input slug must be made before validation!!!
         $post->description = $request->input('description');
         $post->cat_id = $request->input('cats');
         $post->user_id = Auth::id();
@@ -135,11 +131,7 @@ class AdminPostController extends Controller
         }
 
         $post->title = $request->input('title');
-        if ($request->input('slug')) {
-            $post->slug = make_slug($request->input('slug'));
-        } else {
-            $post->slug = make_slug($request->input('title'));
-        }
+        $post->slug = $request->input('slug');     // the input slug must be made before validation!!!
         $post->description = $request->input('description');
         $post->cat_id = $request->input('cats');
         $post->user_id = Auth::id();

@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-
+@section('title')edit post @endsection
 @section('content')
 
 
@@ -46,15 +46,15 @@
                 {!! Form::textarea('meta_keywords', null, ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
-                {!! Form::submit('Submit', ['class'=>'btn btn-success']) !!}
+                {!! Form::submit('update', ['class'=>'btn btn-success']) !!}
             </div>
             {!! Form::close() !!}
             {!! Form::open(['method' => 'DELETE', 'action'=> ['Admin\AdminPostController@destroy', $post->id]]) !!}
             <div class="form-group">
-                {!! Form::submit('DELETE', ['class'=>'btn btn-danger']) !!}
+                {!! Form::submit('delete', ['class'=>'btn btn-danger']) !!}
             </div>
-    {!! Form::close() !!}
+            {!! Form::close() !!}
 
-    @include('partials.form-errors')
-
+            @include('partials.form-errors')
+        </div>
 @endsection

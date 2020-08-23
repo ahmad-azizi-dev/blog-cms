@@ -9,7 +9,7 @@
     <meta name="author" content="ahmad azizi">
     <meta name="keyword" content="Bootstrap Data">
 
-    <title>صفحه مدیریت</title>
+    <title> @yield('title')</title>
     <!-- Icons -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -47,6 +47,15 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{route('posts.index')}}">posts list</a>
                 <a class="dropdown-item" href="{{route('posts.create')}}">create new post</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                categories
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{route('categories.index')}}">categories list</a>
+                <a class="dropdown-item" href="{{route('categories.create')}}">create new category</a>
             </div>
         </li>
     </ul>

@@ -22,6 +22,17 @@ class PostEditRequest extends FormRequest
      *
      * @return array
      */
+
+    //for validation of the unique rule, the input slug must be made before validation!!!
+    protected function prepareForValidation()
+    {
+        if ($this->input('slug')) {
+            $this->merge(['slug' => make_slug($this->input('slug'))]);
+        } else {
+            $this->merge(['slug' => make_slug($this->input('title'))]);
+        }
+    }
+
     public function rules()
     {
 
@@ -29,6 +40,7 @@ class PostEditRequest extends FormRequest
 
             'title'            => 'required|min:10',
             //  by ignoring this post form unique rule we can update the post with the same slug
+            //  route list -> uri ->  admin/posts/{post}/edit -> ($this->post)  !!!
             'slug'             => Rule::unique('posts', 'slug')->ignore($this->post),
             'description'      => 'required',
             'meta_description' => 'required',

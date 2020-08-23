@@ -21,6 +21,17 @@ class PostCreateRequest extends FormRequest
      *
      * @return array
      */
+
+    //for validation of the unique rule, the input slug must be made before validation!!!
+    protected function prepareForValidation()
+    {
+        if ($this->input('slug')) {
+            $this->merge(['slug' => make_slug($this->input('slug'))]);
+        } else {
+            $this->merge(['slug' => make_slug($this->input('title'))]);
+        }
+    }
+
     public function rules()
     {
         return [
