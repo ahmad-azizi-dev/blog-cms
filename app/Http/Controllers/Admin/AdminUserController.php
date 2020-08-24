@@ -115,8 +115,8 @@ class AdminUserController extends Controller
 
             // first deleting the old photo if was exist
 
-            if ($user->photo_id) {
-                $photo = Photo::findOrFail($user->photo_id);
+            if ($photo = Photo::find($user->photo_id)) {
+
                 if (file_exists(public_path() . $user->photo->path)) {
                     unlink(public_path() . $user->photo->path);
                 }

@@ -12,6 +12,7 @@
     <title> @yield('title')</title>
     <!-- Icons -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
 
 </head>
 
@@ -58,6 +59,15 @@
                 <a class="dropdown-item" href="{{route('categories.create')}}">create new category</a>
             </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                media manager
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{route('photos.index')}}">media list</a>
+                <a class="dropdown-item" href="{{route('photos.create')}}">upload new media</a>
+            </div>
+        </li>
     </ul>
 </nav>
 <br>
@@ -73,6 +83,8 @@
 
 </div>
 
+<br>
+<br>
 <footer class="footer container">
         <span class="text-left">
             <a href=""> Admin UI</a> &copy;
@@ -83,6 +95,7 @@
 </footer>
 
 <script src="{{ asset('js/app.js') }}" type="application/javascript"></script>
+@yield('scripts')
 </body>
 
 </html>

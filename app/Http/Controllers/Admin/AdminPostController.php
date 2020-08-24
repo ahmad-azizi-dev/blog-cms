@@ -110,8 +110,8 @@ class AdminPostController extends Controller
 
             // first deleting the old photo if was exist
 
-            if ($post->photo_id) {
-                $photo = Photo::findOrFail($post->photo_id);
+            if ($photo = Photo::find($post->photo_id)) {
+
                 if (file_exists(public_path() . $post->photo->path)) {
                     unlink(public_path() . $post->photo->path);
                 }
