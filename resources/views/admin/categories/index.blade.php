@@ -50,6 +50,7 @@
 
             </tbody>
         </table>
+        <div class="col-md-12 text-center">{{$categories->links()}}</div>
     </div>
 
 @endsection

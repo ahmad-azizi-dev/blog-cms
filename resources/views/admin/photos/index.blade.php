@@ -47,6 +47,7 @@
 
             </tbody>
         </table>
+        <div class="col-md-12 text-center">{{$photos->links()}}</div>
     </div>
 
 

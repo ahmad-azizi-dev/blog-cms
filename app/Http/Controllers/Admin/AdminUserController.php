@@ -22,7 +22,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles', 'photo')->get();
+        $users = User::with('roles', 'photo')->paginate(5);
 
         return view('admin.users.index', compact(['users']));
     }

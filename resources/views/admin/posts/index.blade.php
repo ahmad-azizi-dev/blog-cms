@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title')posts list @endsection
 
 @section('content')
 
@@ -61,6 +62,7 @@
 
             </tbody>
         </table>
+        <div class="col-md-12 text-center">{{$posts->links()}}</div>
     </div>
 
 

@@ -1,14 +1,6 @@
 @extends('admin.layout.main')
-
+@section('title')create post @endsection
 @section('content')
-
-           //messages
-
-    @if(Session::has('create_post'))
-        <div class="alert alert-success">
-            <p>{{Session('create_post')}}</p>
-        </div>
-    @endif
 
     <div class="container">
         <h2>create post</h2>

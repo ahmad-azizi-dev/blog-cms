@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title')users list @endsection
 
 @section('content')
 
@@ -68,6 +69,7 @@
 
             </tbody>
         </table>
+        <div class="col-md-12 text-center">{{$users->links()}}</div>
     </div>
 
 
