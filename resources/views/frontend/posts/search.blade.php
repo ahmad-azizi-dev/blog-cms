@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
 @section('head')
-    <meta name="description" content="CMS-Blog">
-    <meta name="keywords" content="blog cms">
+    <meta name="description" content="search in posts">
+    <meta name="keywords" content="search posts">
     <meta name="author" content="ahmad azizi">
-    <title>blog-cms</title>
+    <title>search in posts</title>
 @endsection
 
 @section('categories')
@@ -13,6 +13,12 @@
 
 @section('content')
     @include('partials.form-errors')
+    <h4 class="mt-4">{{'search result for: "'.$q.'"'}}</h4>
+    </br>
+
+    @if(count($posts)==0)
+        <div class="col-md-auto"><img src="{{asset('png/not_found.png')}}" width="400" class="img-fluid"></div>
+    @endif
 
     @foreach($posts as $post)
         <!-- Title -->
@@ -37,22 +43,18 @@
 
         <!-- Post Content -->
         <div class="text-justify">
-          <p>{{Illuminate\Support\Str::limit($post->description, 200, $end='...')}}</p>
+            <p>{{Illuminate\Support\Str::limit($post->description, 200, $end='...')}}</p>
         </div>
         <hr>
         <div class="col-md-10 text-right">
             <a class="btn btn-success" href="{{route('frontend.post.show', $post->slug)}}">Read more...</a>
         </div>
 
-
-
-
-
         <hr>
         <hr>
 
     @endforeach
 
-    <div class="col-md-12 text-center">{{$posts->links()}}</div>
+    <div class="col-md-12 text-center">{{$posts->withQueryString()->links()}}</div>
 
 @endsection

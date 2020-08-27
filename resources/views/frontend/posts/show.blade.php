@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+    @include('partials.form-errors')
     <!-- Title -->
     <h1 class="mt-4">{{$post->title}}</a></h1>
 
@@ -34,7 +35,7 @@
 
     <!-- Post Content -->
     <div class="text-justify">
-       <p>{{$post->description}}</p>
+        <p>{{$post->description}}</p>
     </div>
     <hr>
     <!-- Comments Form -->

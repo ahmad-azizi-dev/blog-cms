@@ -30,3 +30,4 @@ Route::group(['middleware' => 'admin'], function () {
 
 Route::get('/', 'Frontend\MainController@index');
 Route::get('posts/{slug}', 'Frontend\PostController@show')->name('frontend.post.show');
+Route::get('search', 'Frontend\PostController@search_title')->name('frontend.post.search');
