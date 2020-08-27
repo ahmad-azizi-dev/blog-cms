@@ -1,7 +1,14 @@
 @extends('frontend.layouts.main')
 
+@section('head')
+    <meta name="description" content="CMS-Blog">
+    <meta name="keywords" content="blog cms">
+    <meta name="author" content="ahmad azizi">
+    <title>blog-cms</title>
+@endsection
+
 @section('categories')
-@include('partials.categories',['categories'=>$categories])
+    @include('partials.categories',['categories'=>$categories])
 @endsection
 
 @section('content')
@@ -28,12 +35,12 @@
         <hr>
 
         <!-- Post Content -->
-        <div>
-            {{Illuminate\Support\Str::limit($post->description, 200, $end='...')}}
+        <div class="text-justify">
+          <p>{{Illuminate\Support\Str::limit($post->description, 200, $end='...')}}</p>
         </div>
         <hr>
         <div class="col-md-10 text-right">
-            <a class="btn btn-success" href="{{route('frontend.post.show', $post->id)}}">Read more...</a>
+            <a class="btn btn-success" href="{{route('frontend.post.show', $post->slug)}}">Read more...</a>
         </div>
 
 

@@ -29,4 +29,4 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 Route::get('/', 'Frontend\MainController@index');
-Route::get('posts/{id}', 'Frontend\PostController@show')->name('frontend.post.show');
+Route::get('posts/{slug}', 'Frontend\PostController@show')->name('frontend.post.show');
