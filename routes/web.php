@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
@@ -31,3 +28,5 @@ Route::group(['middleware' => 'admin'], function () {
 
 });
 
+Route::get('/', 'Frontend\MainController@index');
+Route::get('posts/{id}', 'Frontend\PostController@show')->name('frontend.post.show');
