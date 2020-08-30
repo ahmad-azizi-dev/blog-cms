@@ -62,6 +62,14 @@
                 <a class="dropdown-item" href="{{route('photos.create')}}">upload new media</a>
             </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                comments
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{route('comments.index')}}">comments list</a>
+            </div>
+        </li>
     </ul>
 </nav>
 <br>

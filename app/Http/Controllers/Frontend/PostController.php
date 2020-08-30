@@ -11,7 +11,11 @@ class PostController extends Controller
 {
     public function show($slug)
     {
-        $post = Post::with('user', 'photo', 'cat')
+        $post = Post::with(['user', 'photo', 'cat',
+            'comments' => function ($q) {
+                $q->where('status', '1')
+                    ->where('parent_id', '0');
+            }])
             ->where('slug', $slug)
             ->where('status', 1)->first();
         $categories = Cat::all();
