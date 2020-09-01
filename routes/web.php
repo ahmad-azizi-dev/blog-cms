@@ -28,6 +28,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::resource('admin/comments', 'Admin\CommentController');
     Route::post('admin/comments/actions/{id}', 'Admin\CommentController@actions')->name('comments.actions');
+    Route::delete('admin/delete/media', 'Admin\AdminPhotoController@mass_deletion')->name('photo.mass_deletion');
 });
 
 Route::get('/', 'Frontend\MainController@index');

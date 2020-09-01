@@ -11,6 +11,9 @@ use Illuminate\Support\Str;
 
 class AdminPhotoController extends Controller
 {
+
+    private $paginate_per_page = 8;
+
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +21,7 @@ class AdminPhotoController extends Controller
      */
     public function index()
     {
-        $photos = Photo::with('user')->paginate(5);
-      // dd($photos);
+        $photos = Photo::with('user')->paginate($this->paginate_per_page);
 
         return view('admin.photos.index', compact(['photos']));
     }
@@ -90,10 +92,11 @@ class AdminPhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //fist check the posts of the photo if was null then delete that
         if (is_null(Photo::findOrFail($id)->posts->first())) {
@@ -103,10 +106,55 @@ class AdminPhotoController extends Controller
             }
             $photo->delete();
             Session::flash('delete_file', 'file deleted successfully');
-            return redirect('admin/photos');
+
+            // this codes is for solving the problem that causes return to the empty page after deleting
+            $lastPage = Photo::paginate($this->paginate_per_page)->lastPage(); // Get last page with results.
+            if ($request->currentpage > $lastPage) {
+                $lastPage_url = url('admin/photos/') . '?page=' . $lastPage; // Manually build true last page URL.
+                return redirect($lastPage_url);
+            } else {
+                return back();
+            }
         }
 
         Session::flash('delete_file', 'failed to delete! this photo belongs to a post');
-        return redirect('admin/photos');
+        return back();
+
+
+    }
+
+    public function mass_deletion(Request $request)
+    {
+        $request->validate([
+            'checkBoxArray' => 'required',
+        ]);
+
+        //$request->checkBoxArray have array of photo ids
+
+        foreach ($request->checkBoxArray as $id) {
+
+            //fist check the posts of the photo if was null then delete that
+            if (is_null(Photo::findOrFail($id)->posts->first())) {
+                $photo = Photo::findOrFail($id);
+                if (file_exists(public_path() . $photo->path)) {
+                    unlink(public_path() . $photo->path);
+                }
+                $photo->delete();
+            } else {
+                Session::flash('delete_file', 'failed to delete media with id=' . $id . ' this belongs to a post');
+                return back();
+            }
+        }
+
+        Session::flash('delete_file', 'files deleted successfully');
+
+        // this codes is for solving the problem that causes return to the empty page after deleting
+        $lastPage = Photo::paginate(8)->lastPage(); // Get last page with results.
+        if ($request->currentpage > $lastPage) {
+            $lastPage_url = url('admin/photos/') . '?page=' . $lastPage; // Manually build true last page URL.
+            return redirect($lastPage_url);
+        } else {
+            return back();
+        }
     }
 }

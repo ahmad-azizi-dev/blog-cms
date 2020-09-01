@@ -99,7 +99,7 @@
 
             </tbody>
         </table>
-        <div class="col-md-12 text-center">{{$comments->links()}}</div>
+        <div class="col-md-12 text-center">{{$comments->withQueryString()->links()}}</div>
     </div>
 
 @endsection

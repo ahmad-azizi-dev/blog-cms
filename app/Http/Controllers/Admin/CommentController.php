@@ -13,11 +13,11 @@ class CommentController extends Controller
     {
         $comments = Comment::with('post', 'user')
             ->orderBy('created_at', 'desc')
-            ->paginate(30);
+            ->paginate(10);
         $all_id_comment = Comment::pluck('id')->toArray();
         // get all id of comments for checking parent is exist!
 
-        return view('admin.comments.index', compact(['comments','all_id_comment']));
+        return view('admin.comments.index', compact(['comments', 'all_id_comment']));
     }
 
     public function actions(Request $request, $id)
@@ -35,7 +35,7 @@ class CommentController extends Controller
                 Session::flash('rejected_comment', 'comment rejected where id=' . $id);
             }
         }
-        return redirect('/admin/comments');
+        return back();  //back to the same paginate link
     }
 
     public function edit($id)
@@ -51,15 +51,18 @@ class CommentController extends Controller
         $comment->save();
 
         Session::flash('update_comment', 'comment updated successfully');
-        return redirect('/admin/comments');
+
+        $url = $request->only('redirects_to'); //return to the correct page number
+        return redirect()->to($url['redirects_to']);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $comment = Comment::findOrFail($id);
         $comment->delete();
         Session::flash('delete_comment', 'comment deleted successfully');
 
-        return redirect('admin/comments');
+        $url = $request->only('redirects_to'); //return to the correct page number
+        return redirect()->to($url['redirects_to']);
     }
 }

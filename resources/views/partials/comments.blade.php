@@ -5,7 +5,8 @@
                  width="50">
             <div class="media-body">
                 <h5 class="mt-0">{{$comment->user->name}}</h5>
-                <P>{{$comment->description}}</P>
+                <h6 class="mt-0">{{$comment->created_at}}</h6>
+                <P class="text-justify">{{$comment->description}}</P>
                 <div class=" mt-2 mb-2 row">
                     <div class="col-md-12 mb-2">
                         <button class="btn btn-warning btn-open" id="div-comment-{{$comment->id}}">Reply</button>

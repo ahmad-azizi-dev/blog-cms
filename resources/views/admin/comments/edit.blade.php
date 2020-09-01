@@ -13,6 +13,8 @@
             <div class="form-group">
                 {!! Form::label('description', 'Description') !!}
                 {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
+                {{--Save record for return back to the correct paginate list--}}
+                {!! Form::hidden('redirects_to', URL::previous()) !!}
             </div>
 
             <div class="form-group">
@@ -21,6 +23,8 @@
             {!! Form::close() !!}
             {!! Form::open(['method' => 'DELETE', 'action'=> ['Admin\CommentController@destroy', $comment->id]]) !!}
             <div class="form-group">
+                {{--Save record for return back to the correct paginate list--}}
+                {!! Form::hidden('redirects_to', URL::previous()) !!}
                 {!! Form::submit('delete', ['class'=>'btn btn-danger']) !!}
             </div>
             {!! Form::close() !!}
