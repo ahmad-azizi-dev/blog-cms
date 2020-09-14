@@ -24,6 +24,9 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('/')}}">Home</a>
+        </li>
 
         <!-- Dropdown -->
         <li class="nav-item dropdown">

@@ -1,8 +1,15 @@
 @foreach($comments as $comment)
     @if($comment->status)
         <div class="mb-4 ml-5">
-            <img class="d-flex mr-3 rounded-circle float-left" src="{{url('/').$comment->user->photo->path}}"
+
+                <img class="d-flex mr-3 rounded-circle float-left"
+                 @if($comment->user->photo_id)
+                 src="{{url('/').$comment->user->photo->path}}"
+                 @else
+                 src="http://placehold.it/50"
+                 @endif
                  width="50">
+
             <div class="media-body">
                 <h5 class="mt-0">{{$comment->user->name}}</h5>
                 <h6 class="mt-0">{{$comment->created_at}}</h6>
