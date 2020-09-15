@@ -65,6 +65,18 @@ class User extends Authenticatable
         return false;
     }
 
+    // check the roles of the user
+    public function is_normal_user()
+    {
+        foreach ($this->roles as $role) {
+
+            if ($role->name == 'a-user') {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function posts()
     {
         return $this->hasMany('App\Post');

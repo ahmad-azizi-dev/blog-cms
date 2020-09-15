@@ -2,13 +2,13 @@
     @if($comment->status)
         <div class="mb-4 ml-5">
 
-                <img class="d-flex mr-3 rounded-circle float-left"
+                <img class="d-flex mr-3 rounded-circle media-object float-left"
                  @if($comment->user->photo_id)
                  src="{{url('/').$comment->user->photo->path}}"
                  @else
-                 src="http://placehold.it/50"
+                 src="{{asset('png/personal.png')}}"
                  @endif
-                 width="50">
+                 width="50" height="50">
 
             <div class="media-body">
                 <h5 class="mt-0">{{$comment->user->name}}</h5>

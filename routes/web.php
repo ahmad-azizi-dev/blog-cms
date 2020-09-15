@@ -37,3 +37,8 @@ Route::get('search', 'Frontend\PostController@search_title')->name('frontend.pos
 
 Route::post('comments/{postId}', 'Frontend\CommentController@store')->name('frontend.comments.store');
 Route::post('comments}', 'Frontend\CommentController@reply')->name('frontend.comments.reply');
+
+Route::middleware(['NormalUser'])->group(function () {
+Route::get('user/{id}', 'Frontend\UserPanelController@index')->name('frontend.user.index');
+Route::patch('user/{id}', 'Frontend\UserPanelController@update')->name('frontend.user.update');
+});
