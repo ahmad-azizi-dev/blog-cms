@@ -3,29 +3,19 @@
 @section('content')
 
     @if(Session::has('update_comment'))
-        <div class="alert alert-success">
-            <p>{{Session('update_comment')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('update_comment')])
     @endif
 
     @if(Session::has('delete_comment'))
-        <div class="alert alert-danger">
-            <p>{{Session('delete_comment')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('delete_comment')])
     @endif
 
     @if(Session::has('rejected_comment'))
-        <div class="alert alert-warning alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>{{Session('rejected_comment')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('rejected_comment')])
     @endif
 
     @if(Session::has('approved_comment'))
-        <div class="alert alert-info alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>{{Session('approved_comment')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('approved_comment')])
     @endif
 
 

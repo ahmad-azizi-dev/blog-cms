@@ -3,6 +3,8 @@
 @section('content')
 
     <div class="container">
+        @include('partials.form-errors')
+
         <h2>create post</h2>
         <div class="col-md-10 ">
 
@@ -48,7 +50,6 @@
 
         </div>
 
-        @include('partials.form-errors')
 
     </div>
 

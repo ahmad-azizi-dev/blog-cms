@@ -4,6 +4,8 @@
 
 
     <div class="container">
+        @include('partials.form-errors')
+
         <h2>edit user: {{$user->name}}</h2>
 
         <div class="col-md-3 float-right"><img src="{{ $user->photo ? url('/').$user->photo->path : 'https://placehold.it/200'}}"
@@ -51,7 +53,6 @@
 
             </div>
 
-            @include('partials.form-errors')
 
         </div>
 

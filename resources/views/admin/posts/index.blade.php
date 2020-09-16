@@ -4,21 +4,15 @@
 @section('content')
 
     @if(Session::has('create_post'))
-        <div class="alert alert-success">
-            <p>{{Session('create_post')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('create_post')])
     @endif
 
     @if(Session::has('update_post'))
-        <div class="alert alert-success">
-            <p>{{Session('update_post')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('update_post')])
     @endif
 
     @if(Session::has('delete_post'))
-        <div class="alert alert-danger">
-            <p>{{Session('delete_post')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('delete_post')])
     @endif
 
     <div class="container">

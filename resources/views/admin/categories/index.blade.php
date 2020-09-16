@@ -3,21 +3,15 @@
 @section('content')
 
     @if(Session::has('create_category'))
-        <div class="alert alert-success">
-            <p>{{Session('create_category')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('create_category')])
     @endif
 
     @if(Session::has('update_category'))
-        <div class="alert alert-success">
-            <p>{{Session('update_category')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('update_category')])
     @endif
 
     @if(Session::has('delete_category'))
-        <div class="alert alert-danger">
-            <p>{{Session('delete_category')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('delete_category')])
     @endif
 
 

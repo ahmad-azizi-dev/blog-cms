@@ -3,10 +3,7 @@
 @section('content')
 
     @if(Session::has('delete_file'))
-        <div class="alert alert-info alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>{{Session('delete_file')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('delete_file')])
     @endif
 
     <div class="container">

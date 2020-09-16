@@ -5,21 +5,15 @@
 
 
     @if(Session::has('create_user'))
-        <div class="alert alert-success">
-            <p>{{Session('create_user')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('create_user')])
     @endif
 
     @if(Session::has('update_user'))
-        <div class="alert alert-success">
-            <p>{{Session('update_user')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('update_user')])
     @endif
 
     @if(Session::has('delete_user'))
-        <div class="alert alert-danger">
-            <p>{{Session('delete_user')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('delete_user')])
     @endif
 
 

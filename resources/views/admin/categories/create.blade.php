@@ -1,13 +1,12 @@
 @extends('admin.layout.main')
 @section('title')Create Category @endsection
 @section('content')
-    <h3>Create Category</h3>
-
 
 
     <div class="container">
         <div class="col-md-10 ">
             @include('partials.form-errors')
+            <h3>Create Category</h3>
 
             {!! Form::open(['method' => 'post','action' => 'Admin\AdminCategoryController@store']) !!}
             <div class="form-group">

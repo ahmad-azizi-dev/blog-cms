@@ -4,6 +4,8 @@
 
 
     <div class="container">
+        @include('partials.form-errors')
+
         <h2>edit post: {{$post->title}}</h2>
 
         <div class="col-md-3 float-right"><img
@@ -55,6 +57,5 @@
             </div>
             {!! Form::close() !!}
 
-            @include('partials.form-errors')
         </div>
 @endsection

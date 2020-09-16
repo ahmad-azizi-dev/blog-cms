@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+        @include('partials.form-errors')
+
         <h2>create user</h2>
         <div class="col-md-6 ">
 
@@ -38,7 +40,6 @@
 
             </div>
 
-            @include('partials.form-errors')
 
         </div>
 
