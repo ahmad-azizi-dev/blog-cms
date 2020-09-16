@@ -41,10 +41,10 @@
             @foreach($posts as $post)
                 <tr>
                     @if($post->photo)
-                        <td><img src="{{url('/').$post->photo->path}}" alt="http://placehold.it/200" width="80"></td>
+                        <td><img src="{{url('/').$post->photo->path}}" alt="https://placehold.it/200" width="80"></td>
 
                     @else
-                        <td><img src="http://placehold.it/200" alt="http://placehold.it/200" width="80"></td>
+                        <td><img src="https://placehold.it/200" alt="https://placehold.it/200" width="80"></td>
                     @endif
                     <td><a href="{{route('posts.edit', $post->id)}}">{{$post->title}}</a></td>
                     <td><a href="{{route('users.edit', $post->user->id)}}">{{$post->user->name}}</a></td>

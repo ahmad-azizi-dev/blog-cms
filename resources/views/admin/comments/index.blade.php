@@ -43,8 +43,8 @@
                 <th>description</th>
                 <th>status</th>
                 <th>action</th>
-                <th>created date</th>
-                <th>updated date</th>
+                <th class="w-25">created date</th>
+                <th class="w-25">updated date</th>
             </tr>
             </thead>
             <tbody>

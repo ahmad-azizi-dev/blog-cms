@@ -27,7 +27,7 @@
         <h2><b>user:</b> {{$user->name}}</h2>
         <h3><b>email:</b> {{$user->email}}</h3>
         <hr>
-        <img src="{{ $user->photo ? url('/').$user->photo->path : 'http://placehold.it/200'}}"
+        <img src="{{ $user->photo ? url('/').$user->photo->path : 'https://placehold.it/200'}}"
              width="200" alt="sss" class="img-fluid rounded mt-3 mb-4">
 
         {!! Form::model($user ,['method' => 'PATCH','action' => ['Frontend\UserPanelController@update', $user->id] , 'files'=>true]) !!}

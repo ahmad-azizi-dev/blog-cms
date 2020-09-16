@@ -32,7 +32,7 @@
                 <th>avatar</th>
                 <th>name</th>
                 <th>Email</th>
-                <th>created at</th>
+                <th class="w-25">created at</th>
                 <th>roles</th>
                 <th>status</th>
             </tr>
@@ -42,10 +42,10 @@
             @foreach($users as $user)
                 <tr>
                     @if($user->photo)
-                        <td><img src="{{url('/').$user->photo->path}}" alt="http://placehold.it/200" width="80"></td>
+                        <td><img src="{{url('/').$user->photo->path}}" alt="https://placehold.it/200" width="80"></td>
 
                     @else
-                        <td><img src="http://placehold.it/200" alt="http://placehold.it/200" width="80"></td>
+                        <td><img src="https://placehold.it/200" alt="https://placehold.it/200" width="80"></td>
                     @endif
                     <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>

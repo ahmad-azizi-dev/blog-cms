@@ -9,6 +9,8 @@
 
    @yield('head')
 
+    <link rel="icon" href="{{ asset('png/icon.png') }}" type="image/png" sizes="32x32">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

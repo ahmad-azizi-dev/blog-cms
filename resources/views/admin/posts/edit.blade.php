@@ -7,8 +7,8 @@
         <h2>edit post: {{$post->title}}</h2>
 
         <div class="col-md-3 float-right"><img
-                src="{{ $post->photo ? url('/').$post->photo->path : 'http://placehold.it/200'}}"
-                alt="http://placehold.it/200" width="300" alt="sss" class="img-fluid">
+                src="{{ $post->photo ? url('/').$post->photo->path : 'https://placehold.it/200'}}"
+                alt="https://placehold.it/200" width="300" alt="sss" class="img-fluid">
         </div>
         <div class="col-md-6 ">
 

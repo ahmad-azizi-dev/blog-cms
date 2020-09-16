@@ -6,8 +6,8 @@
     <div class="container">
         <h2>edit user: {{$user->name}}</h2>
 
-        <div class="col-md-3 float-right"><img src="{{ $user->photo ? url('/').$user->photo->path : 'http://placehold.it/200'}}"
-                                               alt="http://placehold.it/200" width="200" alt="sss" class="img-fluid">
+        <div class="col-md-3 float-right"><img src="{{ $user->photo ? url('/').$user->photo->path : 'https://placehold.it/200'}}"
+                                               alt="https://placehold.it/200" width="200" alt="sss" class="img-fluid">
         </div>
         <div class="col-md-6 ">
 

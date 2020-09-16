@@ -20,7 +20,7 @@
         {!! Form::open(['method' => 'delete','action' => 'Admin\AdminPhotoController@mass_deletion','class'=>'form-inline','id'=>'mass_deletion']) !!}
         <div class="form-group mb-2">
             {!! Form::select('size', ['delete' => 'Mass deletion'],null,['id'=>'','class' => 'form-control']) !!}
-            {!! Form::submit('apply',['class' => 'btn btn-primary ml-1','form'=>'mass_deletion']) !!}
+            {!! Form::submit('apply',['class' => 'btn btn-primary m-1','form'=>'mass_deletion']) !!}
         </div>
         {!! Form::close() !!}
 

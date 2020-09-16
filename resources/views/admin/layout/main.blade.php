@@ -11,73 +11,90 @@
 
     <title> @yield('title')</title>
     <!-- Icons -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('png/icon.png') }}" type="image/png" sizes="32x32">
+
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/blog-post.css') }}" rel="stylesheet">
+
     @yield('styles')
 
 </head>
 
-<body class="navbar-fixed sidebar-nav fixed-nav">
+<body class="">
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
 
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="{{route('dashboard.index')}}">Dashboard</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{url('/')}}">Home</a>
-        </li>
-
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                users management
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('users.index')}}">users list</a>
-                <a class="dropdown-item" href="{{route('users.create')}}">create user</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                posts management
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('posts.index')}}">posts list</a>
-                <a class="dropdown-item" href="{{route('posts.create')}}">create new post</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                categories
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('categories.index')}}">categories list</a>
-                <a class="dropdown-item" href="{{route('categories.create')}}">create new category</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                media manager
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('photos.index')}}">media list</a>
-                <a class="dropdown-item" href="{{route('photos.create')}}">upload new media</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                comments
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{route('comments.index')}}">comments list</a>
-            </div>
-        </li>
     </ul>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <!-- Dropdown -->
+        <ul class="navbar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('/')}}">Home</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    users management
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('users.index')}}">users list</a>
+                    <a class="dropdown-item" href="{{route('users.create')}}">create user</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    posts management
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('posts.index')}}">posts list</a>
+                    <a class="dropdown-item" href="{{route('posts.create')}}">create new post</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    categories
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('categories.index')}}">categories list</a>
+                    <a class="dropdown-item" href="{{route('categories.create')}}">create new category</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    media manager
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('photos.index')}}">media list</a>
+                    <a class="dropdown-item" href="{{route('photos.create')}}">upload new media</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    comments
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('comments.index')}}">comments list</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 </nav>
 <br>
 
-<div class="container">
+<div class="container-fluid table-responsive mt-5">
 
 
     <div class="row">
@@ -90,16 +107,11 @@
 
 <br>
 <br>
-<footer class=" container">
-        <span class="text-left">
-            <a href=""> Admin UI</a> &copy;
-        </span>
-    <span class="pull-right">
+<!-- Footer -->
+@include('partials.footer')
 
-        </span>
-</footer>
-
-<script src="{{ asset('js/app.js') }}" type="application/javascript"></script>
+<script src="{{ asset('js/jquery.min.js') }}" type="application/javascript"></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}" type="application/javascript"></script>
 @yield('scripts')
 </body>
 
