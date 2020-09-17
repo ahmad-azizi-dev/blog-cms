@@ -23,9 +23,13 @@
     <h1 class="mt-4">{{$post->title}}</a></h1>
 
     <!-- Author -->
-    <p class="lead">
-        by
-        <a href="#">{{$post->user->name}}</a>
+    <p class="m-2">
+        by user
+        <b class="text-dark"> {{$post->user->name}}</b>
+        <br>
+        from the
+        <b><a href="{{route('frontend.post.category', $post->cat->slug)}}">{{$post->cat->title}}</a></b>
+        category
     </p>
 
     <hr>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Cat;
 use App\Http\Controllers\Controller;
 use App\Post;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class MainController extends Controller
 {
@@ -17,6 +17,8 @@ class MainController extends Controller
             ->paginate(4);
         $categories = Cat::all();
 
-        return view('frontend.main.index', compact(['posts', 'categories']));
+        $ip = Request::ip();
+
+        return view('frontend.main.index', compact(['posts', 'categories', 'ip']));
     }
 }
