@@ -14,44 +14,8 @@
 @section('content')
     @include('partials.form-errors')
 
-    @foreach($posts as $post)
-        <!-- Title -->
-        <h1 class="mt-4">{{Illuminate\Support\Str::limit($post->title, 80, $end='...')}}</h1>
-
-        <!-- Author -->
-        <p class="lead">
-            by
-            <a href="#">{{$post->user->name}}</a>
-        </p>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p>{{$post->created_at}}</p>
-
-
-        <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{url('/').$post->photo->path}}" alt="http://placehold.it/900x300">
-
-        <hr>
-
-        <!-- Post Content -->
-        <div class="text-justify">
-          <p>{{Illuminate\Support\Str::limit($post->description, 200, $end='...')}}</p>
-        </div>
-        <hr>
-        <div class="col-md-10 text-right">
-            <a class="btn btn-success" href="{{route('frontend.post.show', $post->slug)}}">Read more...</a>
-        </div>
-
-
-
-
-
-        <hr>
-        <hr>
-
-    @endforeach
+    {{--    displaying the minimized posts contents--}}
+    @include('frontend.partials.posts-min',['posts'=>$posts])
 
     <div class="col-md-12 text-center">{{$posts->links()}}</div>
 

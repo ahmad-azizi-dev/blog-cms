@@ -8,7 +8,8 @@
                     <ul class="list-unstyled mb-0">
                         @foreach($category as $category1)
 
-                            <li><a href="#">{{$category1->title}}</a></li>
+                            <li><a href="{{route('frontend.post.category', $category1->slug)}}">{{$category1->title}}</a>
+                            </li>
 
                         @endforeach
                     </ul>

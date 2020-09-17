@@ -1,6 +1,9 @@
 @foreach($comments as $comment)
     @if($comment->status)
-        <div class="mb-4 ml-5">
+        <div class="mb-4
+        @if($comment->parent_id != 0)
+        ml-4
+        @endif ">
 
                 <img class="d-flex mr-3 rounded-circle media-object float-left"
                  @if($comment->user->photo_id)
@@ -13,7 +16,7 @@
             <div class="media-body">
                 <h5 class="mt-0">{{$comment->user->name}}</h5>
                 <h6 class="mt-0">{{$comment->created_at}}</h6>
-                <P class="text-justify">{{$comment->description}}</P>
+                <P class="text-justify overflow-hidden">{{$comment->description}}</P>
                 <div class=" mt-2 mb-2 row">
                     <div class="col-md-12 mb-2">
                         <button class="btn btn-warning btn-open" id="div-comment-{{$comment->id}}">Reply</button>

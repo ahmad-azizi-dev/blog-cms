@@ -16,29 +16,31 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'admin'], function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
-    Route::resource('admin/users', 'Admin\AdminUserController');
-    Route::resource('admin/posts', 'Admin\AdminPostController');
-    Route::resource('admin/categories', 'Admin\AdminCategoryController');
-    Route::resource('admin/photos', 'Admin\AdminPhotoController');
-    Route::get('admin/dashboard', 'Admin\AdminDashboardController@index')->name('dashboard.index');
+    Route::resource('users', 'Admin\AdminUserController');
+    Route::resource('posts', 'Admin\AdminPostController');
+    Route::resource('categories', 'Admin\AdminCategoryController');
+    Route::resource('photos', 'Admin\AdminPhotoController');
+    Route::get('dashboard', 'Admin\AdminDashboardController@index')->name('dashboard.index');
 
-    Route::resource('admin/comments', 'Admin\CommentController');
-    Route::post('admin/comments/actions/{id}', 'Admin\CommentController@actions')->name('comments.actions');
-    Route::delete('admin/delete/media', 'Admin\AdminPhotoController@mass_deletion')->name('photo.mass_deletion');
+    Route::resource('comments', 'Admin\CommentController');
+    Route::post('comments/actions/{id}', 'Admin\CommentController@actions')->name('comments.actions');
+    Route::delete('delete/media', 'Admin\AdminPhotoController@mass_deletion')->name('photo.mass_deletion');
 });
 
-Route::get('/', 'Frontend\MainController@index');
+Route::get('/', 'Frontend\MainController@index')->name('home');
 Route::get('posts/{slug}', 'Frontend\PostController@show')->name('frontend.post.show');
 Route::get('search', 'Frontend\PostController@search_title')->name('frontend.post.search');
+Route::get('category/{slug}', 'Frontend\PostController@category')->name('frontend.post.category');
 
-Route::post('comments/{postId}', 'Frontend\CommentController@store')->name('frontend.comments.store');
-Route::post('comments}', 'Frontend\CommentController@reply')->name('frontend.comments.reply');
+Route::middleware(['auth'])->group(function () {
+    Route::post('comments/{postId}', 'Frontend\CommentController@store')->name('frontend.comments.store');
+    Route::post('comments}', 'Frontend\CommentController@reply')->name('frontend.comments.reply');
+});
 
 Route::middleware(['NormalUser'])->group(function () {
-Route::get('user/{id}', 'Frontend\UserPanelController@index')->name('frontend.user.index');
-Route::patch('user/{id}', 'Frontend\UserPanelController@update')->name('frontend.user.update');
+    Route::get('user/{id}', 'Frontend\UserPanelController@index')->name('frontend.user.index');
+    Route::patch('user/{id}', 'Frontend\UserPanelController@update')->name('frontend.user.update');
 });

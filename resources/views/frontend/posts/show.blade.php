@@ -13,13 +13,11 @@
 @endsection
 
 @section('content')
+    <br>
     @include('partials.form-errors')
 
     @if(Session::has('add_comment'))
-        <div class="alert alert-info alert-dismissible fade show mt-2">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <p>{{Session('add_comment')}}</p>
-        </div>
+        @include('partials.session-errors',['error'=>Session('add_comment')])
     @endif
     <!-- Title -->
     <h1 class="mt-4">{{$post->title}}</a></h1>

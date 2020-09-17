@@ -18,6 +18,11 @@ class PostController extends Controller
             }])
             ->where('slug', $slug)
             ->where('status', 1)->first();
+
+        if (!$post) {
+            abort(404);
+        }
+
         $categories = Cat::all();
 
         return (view('frontend.posts.show', compact(['post', 'categories'])));
@@ -34,5 +39,22 @@ class PostController extends Controller
             ->paginate(4);
         $categories = Cat::all();
         return view('frontend.posts.search', compact(['posts', 'categories', 'q']));
+    }
+
+    public function category($slug)
+    {
+        $categories = Cat::all();
+        $this_category = $categories->where('slug', $slug)->first();
+        if (!$this_category) {
+            abort(404);
+        }
+
+        $posts = Post::with('cat', 'user', 'photo')
+            ->where('cat_id', $this_category->id)
+            ->where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(4);
+
+        return view('frontend.posts.category', compact(['posts', 'categories', 'this_category']));
     }
 }
