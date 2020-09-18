@@ -14,12 +14,23 @@
 @section('content')
 
     <div class="card mt-4">
-        <h6 class="card-body text-center">Welcome to your page &#128512;
-            <br>
-            <div class="spinner-grow spinner-grow-sm"></div>
-            your ip is <b>{{$ip}}</b>
-            <div class="spinner-grow spinner-grow-sm"></div>
-        </h6>
+        <div class="alert alert-dismissible fade show container p-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h6 class="card-body text-center m-0">Welcome to your page &#128512;
+                <br>
+
+                @if($location)
+                    <span class="text-danger"> your ip is </span><b>{{$location->ip}}</b>
+                    @if($location->countryName)
+                        <span class="text-danger">country:</span><b>{{$location->countryName}}</b>
+                    @endif
+                    @if($location->cityName)
+                        <span class="text-danger">city:</span><b>{{$location->cityName}}</b>
+                    @endif
+                @endif
+
+            </h6>
+        </div>
     </div>
 
     @include('partials.form-errors')

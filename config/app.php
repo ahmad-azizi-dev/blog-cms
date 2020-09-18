@@ -165,6 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Stevebauman\Location\LocationServiceProvider::class,
+        Shetabit\Visitor\Provider\VisitorServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Visitor' => Shetabit\Visitor\Facade\Visitor::class,
 
     ],
 
