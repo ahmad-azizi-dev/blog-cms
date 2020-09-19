@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Shetabit\Visitor\Traits\Visitable;
 
 class Post extends Model
 {
+    use Visitable;
+
     public function user()
     {
         return $this->belongsTo('App\User');

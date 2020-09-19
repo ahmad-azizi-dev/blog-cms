@@ -22,10 +22,12 @@
                 @if($location)
                     <span class="text-danger"> your ip is </span><b>{{$location->ip}}</b>
                     @if($location->countryName)
-                        <span class="text-danger">country:</span><b>{{$location->countryName}}</b>
+                        <span class="text-danger">/ <img class="img-fluid" src="{{url('/').'/png/flags/'.
+                        Illuminate\Support\Str::lower($location->countryCode).'.png'}}" alt="">
+                        </span><b>{{$location->countryName}}</b>
                     @endif
                     @if($location->cityName)
-                        <span class="text-danger">city:</span><b>{{$location->cityName}}</b>
+                        <span class="text-danger">/ </span><b>{{$location->cityName}}</b>
                     @endif
                 @endif
 

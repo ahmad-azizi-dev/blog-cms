@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Cat;
+use App\Events\VisitLogEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
+use App\Position;
 use App\Post;
 
 class PostController extends Controller
@@ -23,6 +25,18 @@ class PostController extends Controller
             abort(404);
         }
 
+        // $visitsCount = $post->visitLogs()->count();
+
+        $visit = visitor()->visit($post);  // create a visit log for $post
+        //$visit->ip = mt_rand(0, 255) . "." . mt_rand(0, 255) . "." . mt_rand(0, 255) . "." . mt_rand(0, 255); //for local check
+
+        $position = new Position();
+        $position->ip = $visit->ip;
+        $position->visit_id = $visit->id;
+        $position->save(); //  other columns of saved positions table will be filled in the event queue
+        event(new VisitLogEvent($position));  //Dispatching VisitLogEvent for filling other columns
+
+
         $categories = Cat::all();
 
         return (view('frontend.posts.show', compact(['post', 'categories'])));
@@ -30,6 +44,13 @@ class PostController extends Controller
 
     public function search_title(SearchRequest $request)
     {
+        $visit = visitor()->visit();  // create a visit log
+        $position = new Position();
+        $position->ip = $visit->ip;
+        $position->visit_id = $visit->id;
+        $position->save(); //  other columns of saved positions table will be filled in the event queue
+        event(new VisitLogEvent($position));  //Dispatching VisitLogEvent for filling other columns
+
         $q = $request->input('q');
 
         $posts = Post::with('cat', 'user', 'photo')
@@ -48,6 +69,14 @@ class PostController extends Controller
         if (!$this_category) {
             abort(404);
         }
+
+        $visit = visitor()->visit($this_category);  // create a visit log for categories
+        $position = new Position();
+        $position->ip = $visit->ip;
+        $position->visit_id = $visit->id;
+        $position->save(); //  other columns of saved positions table will be filled in the event queue
+        event(new VisitLogEvent($position));  //Dispatching VisitLogEvent for filling other columns
+
 
         $posts = Post::with('cat', 'user', 'photo')
             ->where('cat_id', $this_category->id)

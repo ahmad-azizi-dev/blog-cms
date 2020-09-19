@@ -19,7 +19,7 @@ class AdminVisitController extends Controller
      */
     public function index()
     {
-        $visits = Visit::orderBy('created_at', 'desc')
+        $visits = Visit::with('position')->orderBy('created_at', 'desc')
             ->paginate($this->paginate_per_page);
 
 
@@ -55,7 +55,11 @@ class AdminVisitController extends Controller
      */
     public function show($id)
     {
-        //
+        $visits = Visit::with('position')->findorfail($id);
+
+        dd($visits);
+
+        return view('admin.visits.show', compact(['visits']));
     }
 
     /**

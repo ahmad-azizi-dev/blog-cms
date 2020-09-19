@@ -31,6 +31,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::middleware(['LogVisits'])->group(function () {
 
     Auth::routes();
+});
 
     Route::get('/', 'Frontend\MainController@index')->name('home');
     Route::get('posts/{slug}', 'Frontend\PostController@show')->name('frontend.post.show');
@@ -47,4 +48,3 @@ Route::middleware(['LogVisits'])->group(function () {
         Route::patch('user/{id}', 'Frontend\UserPanelController@update')->name('frontend.user.update');
     });
 
-});

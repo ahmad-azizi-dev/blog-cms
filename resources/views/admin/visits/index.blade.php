@@ -26,16 +26,19 @@
 
             @foreach($visits as $visit)
                 <tr>
-                    <td>{{$visit->ip}}</td>
+                    <td><a href="{{route('visits.show', $visit->id)}}">{{$visit->ip}}</a></td>
 
-                    @if($countryName= Stevebauman\Location\Facades\Location::get($visit->ip))
-                        <td>{{$countryName->countryName}}</td>
+                    @if($visit->position)
+                        <td><img class="img-fluid" src="{{url('/').'/png/flags/'.
+                        $visit->position->countryCode.'.png'}}" alt="">
+                            {{$visit->position->countryName}}</td>
+
                     @else
                         <td>not found</td>
                     @endif
 
-                    @if($cityName= Stevebauman\Location\Facades\Location::get($visit->ip))
-                        <td>{{$cityName->cityName}}</td>
+                    @if($visit->position)
+                        <td>{{$visit->position->cityName}}</td>
                     @else
                         <td>not found</td>
                     @endif
