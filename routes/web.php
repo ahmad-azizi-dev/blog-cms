@@ -26,6 +26,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('comments/actions/{id}', 'Admin\CommentController@actions')->name('comments.actions');
 
     Route::delete('delete/media', 'Admin\AdminPhotoController@mass_deletion')->name('photo.mass_deletion');
+    Route::delete('delete/visit', 'Admin\AdminVisitController@mass_deletion')->name('visit.mass_deletion');
 });
 
 Route::middleware(['LogVisits'])->group(function () {

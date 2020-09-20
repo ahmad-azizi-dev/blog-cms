@@ -45,7 +45,7 @@ class VisitLogListener implements ShouldQueue
      */
     public function handle(VisitLogEvent $event)
     {
-        $location = (Location::get($event->visit->ip));   // get ip from saved row positions table
+        $location = Location::get($event->visit->ip);   // get ip from saved row positions table
 
         if ($location) {
 

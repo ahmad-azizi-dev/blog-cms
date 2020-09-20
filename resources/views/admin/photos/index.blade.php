@@ -22,7 +22,7 @@
         {!! Form::close() !!}
 
 
-        <table class="table table-striped">
+        <table class="table table-striped table-sm">
             <thead>
             <tr>
                 <th>
@@ -53,7 +53,7 @@
                     <td>{{$photo->name}}</td>
                     <td>{{$photo->path}}</td>
                     <td>{{$photo->user->name}}</td>
-                    <td>{{$photo->created_at}}</td>
+                    <td>{{$photo->created_at->diffForHumans()}}</td>
                     <td>{{$photo->updated_at}}</td>
                     <td>
                         {!! Form::open(['method' => 'DELETE', 'action'=> ['Admin\AdminPhotoController@destroy', $photo->id],'id'=>$photo->id]) !!}
@@ -78,21 +78,5 @@
 @endsection
 
 @section('scripts')
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#options').click(function () {
-                if (this.checked) {
-                    $('.checkBox').each(function () {
-                        this.checked = true;
-                    })
-                } else {
-                    $('.checkBox').each(function () {
-                        this.checked = false;
-                    })
-                }
-            })
-        })
-    </script>
+    <script src="{{ asset('js/checkbox.mass.operation.js') }}" type="application/javascript"></script>
 @endsection

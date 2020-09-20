@@ -10,4 +10,14 @@ class Visit extends Model
     {
         return $this->hasOne('App\Position');
     }
+
+    public function visitable()
+    {
+        return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->morphTo(__FUNCTION__, 'visitor_type', 'visitor_id');
+    }
 }

@@ -22,7 +22,7 @@
     <div class="container">
         <h3>comments list</h3>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-sm">
             <thead>
             <tr>
                 <th>id</th>
@@ -82,7 +82,7 @@
                         </td>
                     @endif
 
-                    <td>{{$comment->created_at}}</td>
+                    <td>{{$comment->created_at->diffForHumans()}}</td>
                     <td>{{$comment->updated_at}}</td>
                 </tr>
             @endforeach
