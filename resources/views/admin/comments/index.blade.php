@@ -22,7 +22,7 @@
     <div class="container">
         <h3>comments list</h3>
 
-        <table class="table table-striped table-sm">
+        <table class="table mb-4 table-responsive table-striped table-sm">
             <thead>
             <tr>
                 <th>id</th>

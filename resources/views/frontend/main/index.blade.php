@@ -40,6 +40,25 @@
     {{--    displaying the minimized posts contents--}}
     @include('frontend.partials.posts-min',['posts'=>$posts])
 
-    <div class="col-md-12 text-center">{{$posts->links()}}</div>
+    <div class="col-md-12 text-center">{{$posts->withQueryString()->links()}}</div>
 
+    <div class="col-md-4 mb-5">
+        {!! Form::open(['method' => 'get','action' => 'Frontend\MainController@index','class'=>'form-inline']) !!}
+        <div class="form-group mb-2">
+            {!! Form::select('PerPage', ['3' => '3','5' => '5','10' => '10','15' => '15','20' => '20','25' => '25','30' => '30'],
+            Session('PerPagePost'),['class' => 'form-control', 'data-toggle'=>'tooltip','title'=>'posts per page','data-placement'=>'bottom']) !!}
+
+            {!! Form::submit('show',['class' => 'btn btn-primary mx-1']) !!}
+        </div>
+        {!! Form::close() !!}
+    </div>
+
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @endsection

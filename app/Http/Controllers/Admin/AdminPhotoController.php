@@ -12,15 +12,25 @@ use Illuminate\Support\Str;
 class AdminPhotoController extends Controller
 {
 
-    private $paginate_per_page = 8;
+    private $paginate_per_page = 20;
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        if ($PerPagePhoto = $request->input('PerPage')) {     //can get show per page options from a user that apply
+            $this->paginate_per_page = $PerPagePhoto;
+            session(['PerPagePhoto' => $PerPagePhoto]);
+        } elseif ($PerPagePhoto = session('PerPagePhoto')) {  //get show per page options from session
+            $this->paginate_per_page = $PerPagePhoto;
+        } else {
+            session(['PerPagePhoto' => $this->paginate_per_page]);
+        }
+
         $photos = Photo::with('user')->paginate($this->paginate_per_page);
 
         return view('admin.photos.index', compact(['photos']));
@@ -98,6 +108,10 @@ class AdminPhotoController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        if ($PerPage = session('PerPagePhoto')) {     //get show per page options from session
+            $this->paginate_per_page = $PerPage;
+        }
+
         //fist check the posts of the photo if was null then delete that
         if (is_null(Photo::findOrFail($id)->posts->first())) {
             $photo = Photo::findOrFail($id);
@@ -129,6 +143,10 @@ class AdminPhotoController extends Controller
             'checkBoxArray' => 'required',
         ]);
 
+        if ($PerPage = session('PerPagePhoto')) {     //get show per page options from session
+            $this->paginate_per_page = $PerPage;
+        }
+
         //$request->checkBoxArray have array of photo ids
 
         foreach ($request->checkBoxArray as $id) {
@@ -149,7 +167,7 @@ class AdminPhotoController extends Controller
         Session::flash('delete_file', 'files deleted successfully');
 
         // this codes is for solving the problem that causes return to the empty page after deleting
-        $lastPage = Photo::paginate(8)->lastPage(); // Get last page with results.
+        $lastPage = Photo::paginate($this->paginate_per_page)->lastPage(); // Get last page with results.
         if ($request->currentpage > $lastPage) {
             $lastPage_url = url('admin/photos/') . '?page=' . $lastPage; // Manually build true last page URL.
             return redirect($lastPage_url);

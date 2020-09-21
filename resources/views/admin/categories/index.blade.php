@@ -18,7 +18,7 @@
     <div class="container">
         <h3>Categories list</h3>
 
-        <table class="table table-striped">
+        <table class="table mb-4 table-responsive table-striped">
             <thead>
             <tr>
                 <th>title</th>

@@ -102,16 +102,12 @@
 </nav>
 <br>
 
-<div class="container-fluid table-responsive mt-5">
+<div class="container-fluid mt-5">
 
-
-    <div class="row">
-
-        @yield('content')
-
-    </div>
+    @yield('content')
 
 </div>
+
 
 <br>
 <br>

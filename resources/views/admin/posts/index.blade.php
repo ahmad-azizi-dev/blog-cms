@@ -18,7 +18,7 @@
     <div class="container">
         <h2>posts list</h2>
 
-        <table class="table table-striped">
+        <table class="table mb-4 table-responsive table-striped">
             <thead>
             <tr>
                 <th>photo</th>

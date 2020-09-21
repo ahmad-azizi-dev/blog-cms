@@ -20,7 +20,7 @@
     <div class="container">
         <h2>users list</h2>
 
-        <table class="table table-striped">
+        <table class="table mb-4 table-responsive table-striped">
             <thead>
             <tr>
                 <th>avatar</th>

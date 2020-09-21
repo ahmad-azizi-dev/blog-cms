@@ -2,11 +2,11 @@
 @section('title')media list @endsection
 @section('content')
 
-    @if(Session::has('delete_file'))
-        @include('partials.session-errors',['error'=>Session('delete_file')])
-    @endif
+    <div class="col-md-12 m-auto align-content-center ">
 
-    <div class="container">
+        @if(Session::has('delete_file'))
+            @include('partials.session-errors',['error'=>Session('delete_file')])
+        @endif
 
         @include('partials.form-errors')
 
@@ -22,7 +22,7 @@
         {!! Form::close() !!}
 
 
-        <table class="table table-striped table-sm">
+        <table class="table mb-4 table-responsive table-striped table-sm">
             <thead>
             <tr>
                 <th>
@@ -72,11 +72,28 @@
 
             </tbody>
         </table>
-        <div class="col-md-12 text-center">{{$photos->links()}}</div>
+        <div class="col-md-12 text-center">{{$photos->withQueryString()->links()}}</div>
+
+        <div class="col-md-4">
+            {!! Form::open(['method' => 'get','action' => 'Admin\AdminPhotoController@index','class'=>'form-inline']) !!}
+            <div class="form-group mb-2">
+
+                {!! Form::select('PerPage', ['5' => '5 ','10' => '10','20' => '20','30' => '30','40' => '40','60' => '60','80' => '80','100' => '100'],
+                Session('PerPagePhoto'),['class' => 'form-control', 'data-toggle'=>'tooltip','title'=>'media per page','data-placement'=>'bottom']) !!}
+
+                {!! Form::submit('show',['class' => 'btn btn-success mx-1']) !!}
+            </div>
+            {!! Form::close() !!}
+        </div>
     </div>
 
 @endsection
 
 @section('scripts')
     <script src="{{ asset('js/checkbox.mass.operation.js') }}" type="application/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 @endsection

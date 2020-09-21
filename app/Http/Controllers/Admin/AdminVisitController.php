@@ -13,15 +13,24 @@ use Stevebauman\Location\Facades\Location;
 class AdminVisitController extends Controller
 {
 
-    private $paginate_per_page = 25;
+    private $paginate_per_page = 20;
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($PerPageVisit = $request->input('PerPage')) {     //can get show per page options from a user that apply
+            $this->paginate_per_page = $PerPageVisit;
+            session(['PerPageVisit' => $PerPageVisit]);
+        } elseif ($PerPageVisit = session('PerPageVisit')) {  //get show per page options from session
+            $this->paginate_per_page = $PerPageVisit;
+        } else {
+            session(['PerPageVisit' => $this->paginate_per_page]);
+        }
+
         $visits = Visit::with('position', 'user', 'visitable')->orderBy('created_at', 'desc')
             ->paginate($this->paginate_per_page);
 
@@ -146,8 +155,13 @@ class AdminVisitController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+
+        if ($PerPage = session('PerPageVisit')) {     //get show per page options from session
+            $this->paginate_per_page = $PerPage;
+        }
+
         $visit = Visit::findOrFail($id);
-        Session::flash('visit', 'log with IP=' . $visit->ip . ' deleted successfully');
+        Session::flash('visit', 'log with IP=' . $visit->ip . 'and id= ' . $visit->id . ' deleted successfully');
         $visit->delete();
 
         // this codes is for solving the problem that causes return to the empty page after deleting
@@ -167,6 +181,10 @@ class AdminVisitController extends Controller
             'checkBoxArray' => 'required',
         ]);
 
+        if ($PerPage = session('PerPageVisit')) {     //get show per page options from session
+            $this->paginate_per_page = $PerPage;
+        }
+
         $ids = collect($request->checkBoxArray)->implode('-');
 
         //$request->checkBoxArray has an array of visit ids
@@ -176,7 +194,7 @@ class AdminVisitController extends Controller
             $visit->delete();
         }
 
-        Session::flash('visit', 'log with IP=' . $ids . ' deleted successfully');
+        Session::flash('visit', 'log with ID=' . $ids . ' deleted successfully');
 
         // this codes is for solving the problem that causes return to the empty page after deleting
         $lastPage = Visit::paginate($this->paginate_per_page)->lastPage(); // Get last page with results.
