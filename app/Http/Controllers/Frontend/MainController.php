@@ -44,7 +44,7 @@ class MainController extends Controller
 
         $url = $request->url();
         if (Str::contains($url, ['localhost', 'azizi-dev']) == null) {  //check url just for test!!!
-            return redirect()->route('home');
+            return redirect('https://amir-azizi-dev.ir');
         }
 
         return view('frontend.main.index', compact(['posts', 'categories', 'location']));

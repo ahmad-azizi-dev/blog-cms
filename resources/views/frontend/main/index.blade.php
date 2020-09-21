@@ -48,7 +48,7 @@
             {!! Form::select('PerPage', ['3' => '3','5' => '5','10' => '10','15' => '15','20' => '20','25' => '25','30' => '30'],
             Session('PerPagePost'),['class' => 'form-control', 'data-toggle'=>'tooltip','title'=>'posts per page','data-placement'=>'bottom']) !!}
 
-            {!! Form::submit('show',['class' => 'btn btn-primary mx-1']) !!}
+            {!! Form::submit('show',['class' => 'btn btn-primary m-1']) !!}
         </div>
         {!! Form::close() !!}
     </div>
